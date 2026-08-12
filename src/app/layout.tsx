@@ -13,14 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Argencore Solutions | ArgencoreAI - Chatbot IA para WhatsApp",
+  title: "Argencore Solutions | Software e inteligencia artificial",
   description:
-    "ArgencoreAI es el chatbot de inteligencia artificial de Argencore Solutions: atención automática por WhatsApp con IA, disponible las 24 horas para tu negocio.",
+    "Empresa argentina de desarrollo de software e inteligencia artificial. Creamos soluciones a medida y productos propios como ArgencoreAI, nuestra plataforma de chatbots para WhatsApp.",
   metadataBase: new URL("https://argencoresolutions.com.ar"),
   openGraph: {
-    title: "Argencore Solutions | ArgencoreAI",
+    title: "Argencore Solutions",
     description:
-      "Chatbot de inteligencia artificial para atención por WhatsApp, con panel de administración y respuestas automáticas basadas en la información real de tu negocio.",
+      "Empresa argentina de desarrollo de software e inteligencia artificial. Soluciones a medida y productos propios como ArgencoreAI.",
     url: "https://argencoresolutions.com.ar",
     siteName: "Argencore Solutions",
     locale: "es_AR",

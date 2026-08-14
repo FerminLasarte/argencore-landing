@@ -21,5 +21,15 @@ export const INSTAGRAM_HANDLE = "@argencoresolutions";
 
 export const LOCATION = "HQ Capital Federal, Argentina";
 
+/**
+ * Datos del titular. Argencore Solutions es el nombre comercial bajo el que
+ * opera una persona física, así que la identificación legal es la suya.
+ * Se usan solo en las páginas legales.
+ */
+export const LEGAL_NAME = "Facundo Nazar Anchorena";
+export const LEGAL_CUIT = "20-43909145-3";
+export const LEGAL_ADDRESS =
+  "Pedro Saint Miqueu 1402, B7000 Tandil, Provincia de Buenos Aires, Argentina";
+
 /** Fecha de última revisión de los textos legales. */
 export const LEGAL_UPDATED = "14 de agosto de 2026";

@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import LegalPage from "../components/legal-page";
-import { EMAIL, EMAIL_URL, LOCATION, SITE_URL } from "../lib/site";
+import {
+  EMAIL,
+  EMAIL_URL,
+  LEGAL_ADDRESS,
+  LEGAL_CUIT,
+  LEGAL_NAME,
+  SITE_URL,
+} from "../lib/site";
 
 export const metadata: Metadata = {
   title: "Términos y condiciones | Argencore Solutions",
@@ -25,9 +32,13 @@ export default function TerminosYCondicionesPage() {
       <h2>2. Titularidad</h2>
       <p>
         Este sitio, disponible en <a href={SITE_URL}>{SITE_URL}</a>, es
-        titularidad de <strong>Argencore Solutions</strong>, con sede en{" "}
-        {LOCATION}. Su finalidad es institucional: presentar la empresa, sus
-        servicios y sus proyectos, y facilitar el contacto con personas
+        titularidad de <strong>{LEGAL_NAME}</strong>, CUIT {LEGAL_CUIT}, con
+        domicilio legal en {LEGAL_ADDRESS}, quien opera bajo el nombre comercial{" "}
+        <strong>Argencore Solutions</strong>.
+      </p>
+      <p>
+        La finalidad del sitio es institucional: presentar la actividad, los
+        servicios y los proyectos, y facilitar el contacto con personas
         interesadas.
       </p>
 
@@ -137,9 +148,10 @@ export default function TerminosYCondicionesPage() {
       <p>
         Estos términos y condiciones se rigen por las leyes de la República
         Argentina. Ante cualquier controversia derivada del uso del sitio, las
-        partes se someten a la jurisdicción de los tribunales ordinarios de la
-        Ciudad Autónoma de Buenos Aires, con renuncia a cualquier otro fuero que
-        pudiera corresponder.
+        partes se someten a la jurisdicción de los tribunales ordinarios
+        correspondientes al domicilio del titular, en la Provincia de Buenos
+        Aires, sin perjuicio de la jurisdicción que resulte aplicable de manera
+        imperativa en las relaciones de consumo.
       </p>
 
       <h2>13. Contacto</h2>

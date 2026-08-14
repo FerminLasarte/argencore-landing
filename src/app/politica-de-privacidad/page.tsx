@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import LegalPage from "../components/legal-page";
-import { EMAIL, EMAIL_URL, LOCATION, WHATSAPP_DISPLAY } from "../lib/site";
+import {
+  EMAIL,
+  EMAIL_URL,
+  LEGAL_ADDRESS,
+  LEGAL_CUIT,
+  LEGAL_NAME,
+  WHATSAPP_DISPLAY,
+} from "../lib/site";
 
 export const metadata: Metadata = {
   title: "Política de privacidad | Argencore Solutions",
@@ -17,11 +24,14 @@ export default function PoliticaDePrivacidadPage() {
     >
       <h2>1. Responsable del tratamiento</h2>
       <p>
-        El responsable del tratamiento de los datos personales recopilados a
-        través de este sitio es <strong>Argencore Solutions</strong>, con sede en{" "}
-        {LOCATION}. Para cualquier consulta vinculada a esta política podés
-        escribirnos a <a href={EMAIL_URL}>{EMAIL}</a> o por WhatsApp al{" "}
-        {WHATSAPP_DISPLAY}.
+        <strong>Argencore Solutions</strong> es el nombre comercial bajo el cual
+        opera <strong>{LEGAL_NAME}</strong>, CUIT {LEGAL_CUIT}, con domicilio
+        legal en {LEGAL_ADDRESS}, en carácter de responsable del tratamiento de
+        los datos personales recopilados a través de este sitio.
+      </p>
+      <p>
+        Para cualquier consulta vinculada a esta política podés escribirnos a{" "}
+        <a href={EMAIL_URL}>{EMAIL}</a> o por WhatsApp al {WHATSAPP_DISPLAY}.
       </p>
 
       <h2>2. Qué datos recopilamos</h2>

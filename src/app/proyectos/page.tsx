@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import AnimatedButton from "../components/animated-button";
 import Reveal from "../components/reveal";
 import SiteFooter from "../components/site-footer";
 import SiteHeader from "../components/site-header";
@@ -242,21 +242,18 @@ export default function ProyectosPage() {
                   Contanos qué necesitás y vemos juntos cómo llevarlo adelante.
                 </p>
                 <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                  <a
+                  <AnimatedButton
                     href={WHATSAPP_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2.5 rounded-full bg-blue px-8 py-3.5 text-base font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue/30"
-                  >
-                    <WhatsAppIcon className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
-                    Hablemos por WhatsApp
-                  </a>
-                  <Link
+                    text="Hablemos por WhatsApp"
+                    icon={<WhatsAppIcon className="h-5 w-5" />}
+                    size="lg"
+                  />
+                  <AnimatedButton
                     href="/"
-                    className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-8 py-3.5 text-base font-medium text-navy transition-all duration-300 hover:border-blue/40"
-                  >
-                    Volver al inicio
-                  </Link>
+                    text="Volver al inicio"
+                    variant="outline"
+                    size="lg"
+                  />
                 </div>
               </div>
             </div>

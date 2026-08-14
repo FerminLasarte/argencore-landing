@@ -296,4 +296,14 @@ body {
   .lift:hover {
     transform: none;
   }
+
+  /* El botón sigue cambiando de estado, pero sin desplazamientos */
+  .anim-btn,
+  .anim-btn * {
+    transition: none;
+  }
+
+  .anim-btn:hover {
+    transform: none;
+  }
 }

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import AnimatedButton from "./components/animated-button";
 import Reveal from "./components/reveal";
 import SiteFooter from "./components/site-footer";
 import SiteHeader from "./components/site-header";
@@ -178,21 +179,18 @@ export default function Home() {
               className="rise mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
               style={{ animationDelay: "0.45s" }}
             >
-              <a
+              <AnimatedButton
                 href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full bg-blue px-7 py-3.5 text-base font-medium text-white transition-all duration-300 hover:shadow-xl hover:shadow-blue/30 hover:-translate-y-0.5"
-              >
-                <WhatsAppIcon className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
-                Hablemos de tu proyecto
-              </a>
-              <Link
+                text="Hablemos de tu proyecto"
+                icon={<WhatsAppIcon className="h-5 w-5" />}
+                size="lg"
+              />
+              <AnimatedButton
                 href="/proyectos"
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-7 py-3.5 text-base font-medium text-navy transition-all duration-300 hover:border-blue/40 hover:bg-surface"
-              >
-                Ver nuestros proyectos
-              </Link>
+                text="Ver nuestros proyectos"
+                variant="outline"
+                size="lg"
+              />
             </div>
           </div>
         </section>
@@ -376,14 +374,12 @@ export default function Home() {
             )}
 
             <Reveal delay={220}>
-              <div className="mt-12 text-center">
-                <Link
+              <div className="mt-12 flex justify-center">
+                <AnimatedButton
                   href="/proyectos"
-                  className="group inline-flex items-center gap-2 rounded-full border border-border bg-white px-7 py-3.5 text-base font-medium text-navy transition-all duration-300 hover:-translate-y-0.5 hover:border-blue/40 hover:shadow-lg"
-                >
-                  Ver todos los proyectos
-                  <ArrowIcon className="h-4 w-4 text-blue transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
+                  text="Ver todos los proyectos"
+                  variant="outline"
+                />
               </div>
             </Reveal>
           </div>
@@ -470,22 +466,19 @@ export default function Home() {
                 </p>
 
                 <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                  <a
+                  <AnimatedButton
                     href={WHATSAPP_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2.5 rounded-full bg-blue px-8 py-4 text-base font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue/30"
-                  >
-                    <WhatsAppIcon className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
-                    WhatsApp
-                  </a>
-                  <a
+                    text="WhatsApp"
+                    icon={<WhatsAppIcon className="h-5 w-5" />}
+                    size="lg"
+                  />
+                  <AnimatedButton
                     href={EMAIL_URL}
-                    className="group inline-flex items-center gap-2.5 rounded-full border border-border bg-white px-8 py-4 text-base font-medium text-navy transition-all duration-300 hover:-translate-y-0.5 hover:border-blue/40 hover:shadow-lg"
-                  >
-                    <MailIcon className="h-5 w-5 text-blue transition-transform duration-300 group-hover:-translate-y-0.5" />
-                    Enviar un mail
-                  </a>
+                    text="Enviar un mail"
+                    icon={<MailIcon className="h-5 w-5" />}
+                    variant="outline"
+                    size="lg"
+                  />
                 </div>
 
                 <div className="mt-8 flex flex-col items-center gap-2 text-sm text-muted sm:flex-row sm:justify-center sm:gap-6">

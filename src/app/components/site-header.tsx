@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import AnimatedButton from "./animated-button";
 import { WhatsAppIcon } from "./icons";
 import { WHATSAPP_URL } from "../lib/site";
 
@@ -39,16 +40,27 @@ export default function SiteHeader() {
           ))}
         </nav>
 
+        {/* En mobile no entra el texto, así que queda solo el icono */}
         <a
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contactar por WhatsApp"
-          className="inline-flex items-center gap-2 rounded-full bg-navy p-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-blue hover:shadow-lg hover:shadow-blue/25 sm:px-5 sm:py-2.5"
+          className="inline-flex items-center rounded-full bg-navy p-2.5 text-white transition-colors duration-300 hover:bg-blue sm:hidden"
         >
           <WhatsAppIcon className="h-4 w-4" />
-          <span className="hidden sm:inline">Contacto</span>
         </a>
+
+        {/* El wrapper controla la visibilidad: el botón ya define su display */}
+        <span className="hidden sm:block">
+          <AnimatedButton
+            href={WHATSAPP_URL}
+            text="Contacto"
+            icon={<WhatsAppIcon className="h-4 w-4" />}
+            variant="dark"
+            size="sm"
+          />
+        </span>
       </div>
     </header>
   );

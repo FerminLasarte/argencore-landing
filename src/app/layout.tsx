@@ -13,14 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Argencore Solutions | Software e inteligencia artificial",
+  title: "Argencore Solutions | Páginas web, software e inteligencia artificial",
   description:
-    "Empresa argentina de desarrollo de software e inteligencia artificial. Creamos soluciones a medida y productos propios como ArgencoreAI, nuestra plataforma de chatbots para WhatsApp.",
+    "Empresa argentina de tecnología con base en Capital Federal. Hacemos páginas web, software a medida e inteligencia artificial, y desarrollamos productos propios como ArgencoreAI.",
   metadataBase: new URL("https://argencoresolutions.com.ar"),
   openGraph: {
     title: "Argencore Solutions",
     description:
-      "Empresa argentina de desarrollo de software e inteligencia artificial. Soluciones a medida y productos propios como ArgencoreAI.",
+      "Empresa argentina de tecnología: páginas web, software a medida e inteligencia artificial. Productos propios como ArgencoreAI.",
     url: "https://argencoresolutions.com.ar",
     siteName: "Argencore Solutions",
     locale: "es_AR",

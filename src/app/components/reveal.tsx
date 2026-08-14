@@ -21,6 +21,13 @@ export default function Reveal({
     const node = ref.current;
     if (!node) return;
 
+    // Sin soporte de IntersectionObserver mostramos el contenido directamente,
+    // para que nunca quede invisible.
+    if (typeof IntersectionObserver === "undefined") {
+      node.classList.add("is-visible");
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -32,7 +39,21 @@ export default function Reveal({
     );
 
     observer.observe(node);
-    return () => observer.disconnect();
+
+    // Si al montar ya está en pantalla —por ejemplo al entrar por un enlace
+    // con ancla— lo mostramos sin depender del aviso del observer.
+    const frame = requestAnimationFrame(() => {
+      const rect = node.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        setVisible(true);
+        observer.disconnect();
+      }
+    });
+
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
   }, []);
 
   return (

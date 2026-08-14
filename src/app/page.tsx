@@ -1,19 +1,21 @@
 import Image from "next/image";
+import Link from "next/link";
 import Reveal from "./components/reveal";
-
-const WHATSAPP_NUMBER = "5491162799371";
-const WHATSAPP_DISPLAY = "+54 9 11 6279-9371";
-const WHATSAPP_MESSAGE = "Hola, quiero saber más sobre Argencore Solutions.";
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-  WHATSAPP_MESSAGE
-)}`;
-
-const EMAIL = "argencoresolutions@gmail.com";
-const EMAIL_URL = `mailto:${EMAIL}?subject=${encodeURIComponent(
-  "Consulta desde argencoresolutions.com.ar"
-)}`;
-
-const INSTAGRAM_URL = "https://www.instagram.com/argencoresolutions/";
+import SiteFooter from "./components/site-footer";
+import SiteHeader from "./components/site-header";
+import {
+  ArrowIcon,
+  CheckIcon,
+  MailIcon,
+  WhatsAppIcon,
+} from "./components/icons";
+import { FEATURED_PROJECT, PROJECTS } from "./lib/projects";
+import {
+  EMAIL,
+  EMAIL_URL,
+  WHATSAPP_DISPLAY,
+  WHATSAPP_URL,
+} from "./lib/site";
 
 const CAPABILITIES = [
   {
@@ -43,13 +45,6 @@ const CAPABILITIES = [
   },
 ];
 
-const PROJECT_FEATURES = [
-  "Respuestas automáticas con IA sobre la información real de cada negocio",
-  "Panel de administración para gestionar clientes y contenidos",
-  "Arquitectura multi-tenant: varias cuentas desde una sola plataforma",
-  "Integración directa con WhatsApp Business API",
-];
-
 const PROCESS = [
   {
     number: "01",
@@ -71,121 +66,14 @@ const PROCESS = [
   },
 ];
 
-function WhatsAppIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.67.15-.198.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-      <path d="M12.001 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.763.462 3.483 1.34 4.997L2 22l5.116-1.322a9.96 9.96 0 0 0 4.885 1.318h.004c5.514 0 9.997-4.483 9.997-9.997 0-2.671-1.04-5.182-2.928-7.07a9.93 9.93 0 0 0-7.073-2.926zm0 18.174a8.16 8.16 0 0 1-4.166-1.14l-.299-.177-3.037.785.81-2.96-.194-.304a8.176 8.176 0 0 1-1.257-4.38c0-4.51 3.671-8.181 8.146-8.181 2.175 0 4.219.848 5.757 2.387a8.098 8.098 0 0 1 2.386 5.795c-.003 4.51-3.674 8.175-8.146 8.175z" />
-    </svg>
-  );
-}
-
-function MailIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.8}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-    >
-      <rect x="2.5" y="4.5" width="19" height="15" rx="2.5" />
-      <path d="M3 7l8.13 5.42a1.6 1.6 0 0 0 1.74 0L21 7" />
-    </svg>
-  );
-}
-
-function InstagramIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.8}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-    >
-      <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" />
-      <circle cx="12" cy="12" r="4.2" />
-      <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2.2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M4 10.5l4 4 8-9" />
-    </svg>
-  );
-}
+const OTHER_PROJECTS = PROJECTS.filter(
+  (project) => project.slug !== FEATURED_PROJECT.slug
+);
 
 export default function Home() {
   return (
     <div className="flex min-h-full flex-col bg-background text-foreground">
-      <header className="sticky top-0 z-50 border-b border-border/70 bg-white/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <a href="#" className="group flex items-center gap-2.5">
-            <Image
-              src="/logo-mark.png"
-              alt="Argencore Solutions"
-              width={112}
-              height={112}
-              className="h-8 w-8 object-contain transition-transform duration-500 group-hover:scale-110"
-              priority
-            />
-            <span className="text-[17px] font-semibold tracking-tight text-navy">
-              Argencore <span className="text-blue">Solutions</span>
-            </span>
-          </a>
-
-          <nav className="hidden items-center gap-8 md:flex">
-            {[
-              ["Qué hacemos", "#servicios"],
-              ["Proyectos", "#proyectos"],
-              ["Nosotros", "#nosotros"],
-            ].map(([label, href]) => (
-              <a
-                key={href}
-                href={href}
-                className="relative text-sm text-muted transition-colors hover:text-navy after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-blue after:transition-all after:duration-300 hover:after:w-full"
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
-
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Contactar por WhatsApp"
-            className="inline-flex items-center gap-2 rounded-full bg-navy p-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-blue hover:shadow-lg hover:shadow-blue/25 sm:px-5 sm:py-2.5"
-          >
-            <WhatsAppIcon className="h-4 w-4" />
-            <span className="hidden sm:inline">Contacto</span>
-          </a>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="flex-1">
         {/* Hero */}
@@ -299,18 +187,21 @@ export default function Home() {
                 <WhatsAppIcon className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
                 Hablemos de tu proyecto
               </a>
-              <a
-                href="#proyectos"
+              <Link
+                href="/proyectos"
                 className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-7 py-3.5 text-base font-medium text-navy transition-all duration-300 hover:border-blue/40 hover:bg-surface"
               >
                 Ver nuestros proyectos
-              </a>
+              </Link>
             </div>
           </div>
         </section>
 
         {/* Qué hacemos */}
-        <section id="servicios" className="border-y border-border bg-surface py-24">
+        <section
+          id="servicios"
+          className="border-y border-border bg-surface py-24"
+        >
           <div className="mx-auto max-w-6xl px-6">
             <Reveal>
               <div className="mx-auto max-w-2xl text-center">
@@ -334,7 +225,8 @@ export default function Home() {
                   delay={i * 90}
                   className={
                     // con una cantidad impar, la última tarjeta ocupa el ancho completo
-                    CAPABILITIES.length % 2 === 1 && i === CAPABILITIES.length - 1
+                    CAPABILITIES.length % 2 === 1 &&
+                    i === CAPABILITIES.length - 1
                       ? "sm:col-span-2"
                       : ""
                   }
@@ -358,7 +250,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Proyectos */}
+        {/* Proyectos — vista previa */}
         <section id="proyectos" className="py-24">
           <div className="mx-auto max-w-6xl px-6">
             <Reveal>
@@ -371,7 +263,7 @@ export default function Home() {
                 </h2>
                 <p className="mt-4 text-muted">
                   Además del trabajo a medida, desarrollamos productos propios.
-                  Este es el primero.
+                  Este es el principal.
                 </p>
               </div>
             </Reveal>
@@ -390,26 +282,32 @@ export default function Home() {
                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                         <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
                       </span>
-                      Proyecto activo
+                      {FEATURED_PROJECT.status}
                     </span>
 
                     <h3 className="mt-6 text-3xl font-semibold tracking-tight sm:text-4xl">
-                      ArgencoreAI
+                      {FEATURED_PROJECT.name}
                     </h3>
                     <p className="mt-4 max-w-lg leading-relaxed text-white/70">
-                      Nuestra plataforma de chatbots con inteligencia artificial
-                      para atención por WhatsApp. Responde de forma automática
-                      usando la información real de cada negocio, las 24 horas.
+                      {FEATURED_PROJECT.description}
                     </p>
 
                     <ul className="mt-8 space-y-3">
-                      {PROJECT_FEATURES.map((feature) => (
+                      {FEATURED_PROJECT.features.slice(0, 3).map((feature) => (
                         <li key={feature} className="flex gap-3 text-white/80">
                           <CheckIcon className="mt-0.5 h-5 w-5 shrink-0 text-blue-soft" />
                           <span className="leading-relaxed">{feature}</span>
                         </li>
                       ))}
                     </ul>
+
+                    <Link
+                      href={`/proyectos#${FEATURED_PROJECT.slug}`}
+                      className="group mt-8 inline-flex items-center gap-2 text-sm font-medium text-blue-soft"
+                    >
+                      Ver el proyecto en detalle
+                      <ArrowIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    </Link>
                   </div>
 
                   {/* Simulación de conversación */}
@@ -449,19 +347,44 @@ export default function Home() {
               </div>
             </Reveal>
 
-            <Reveal delay={200}>
-              <p className="mt-8 text-center text-sm text-muted">
-                Estamos desarrollando nuevos productos.{" "}
-                <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-blue underline-offset-4 hover:underline"
+            {/* Resto de los proyectos, en versión compacta */}
+            {OTHER_PROJECTS.length > 0 && (
+              <div className="mt-6 grid gap-6 sm:grid-cols-2">
+                {OTHER_PROJECTS.map((project, i) => (
+                  <Reveal key={project.slug} delay={160 + i * 90}>
+                    <Link
+                      href={`/proyectos#${project.slug}`}
+                      className="lift group flex h-full flex-col rounded-2xl border border-border bg-white p-8"
+                    >
+                      <span className="inline-flex w-fit items-center rounded-full bg-blue/8 px-3 py-1 text-xs font-medium text-blue">
+                        {project.status}
+                      </span>
+                      <h3 className="mt-5 text-lg font-semibold text-navy">
+                        {project.name}
+                      </h3>
+                      <p className="mt-2 leading-relaxed text-muted">
+                        {project.tagline}
+                      </p>
+                      <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-blue">
+                        Ver detalle
+                        <ArrowIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </span>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+            )}
+
+            <Reveal delay={220}>
+              <div className="mt-12 text-center">
+                <Link
+                  href="/proyectos"
+                  className="group inline-flex items-center gap-2 rounded-full border border-border bg-white px-7 py-3.5 text-base font-medium text-navy transition-all duration-300 hover:-translate-y-0.5 hover:border-blue/40 hover:shadow-lg"
                 >
-                  Escribinos
-                </a>{" "}
-                si querés que construyamos algo para tu empresa.
-              </p>
+                  Ver todos los proyectos
+                  <ArrowIcon className="h-4 w-4 text-blue transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              </div>
             </Reveal>
           </div>
         </section>
@@ -588,76 +511,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-border bg-surface/60 py-12">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
-            {/* Marca y ubicación */}
-            <div>
-              <div className="flex items-center gap-2.5">
-                <Image
-                  src="/logo-mark.png"
-                  alt=""
-                  width={64}
-                  height={64}
-                  className="h-7 w-7 object-contain"
-                />
-                <span className="text-base font-semibold tracking-tight text-navy">
-                  Argencore <span className="text-blue">Solutions</span>
-                </span>
-              </div>
-              <p className="mt-3 text-sm text-muted">
-                HQ Capital Federal, Argentina
-              </p>
-            </div>
-
-            {/* Contacto */}
-            <div className="flex flex-col gap-3 text-sm">
-              <span className="font-medium text-navy">Contacto</span>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 text-muted transition-colors hover:text-blue"
-              >
-                <WhatsAppIcon className="h-4 w-4" />
-                {WHATSAPP_DISPLAY}
-              </a>
-              <a
-                href={EMAIL_URL}
-                className="inline-flex items-center gap-2.5 text-muted transition-colors hover:text-blue"
-              >
-                <MailIcon className="h-4 w-4" />
-                {EMAIL}
-              </a>
-              <a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 text-muted transition-colors hover:text-blue"
-              >
-                <InstagramIcon className="h-4 w-4" />
-                @argencoresolutions
-              </a>
-            </div>
-          </div>
-
-          <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 text-sm text-muted sm:flex-row">
-            <span>
-              © {new Date().getFullYear()} Argencore Solutions. Todos los
-              derechos reservados.
-            </span>
-            <a
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram de Argencore Solutions"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-white text-navy transition-all duration-300 hover:-translate-y-0.5 hover:border-blue/40 hover:text-blue"
-            >
-              <InstagramIcon className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

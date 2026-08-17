@@ -68,6 +68,24 @@ export function CheckIcon({ className }: IconProps) {
   );
 }
 
+/** Retoma el pico de la «A» del isotipo, como acento gráfico de marca. */
+export function PeakIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 40 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M2 18L16 2l12 16" />
+    </svg>
+  );
+}
+
 export function ArrowIcon({ className }: IconProps) {
   return (
     <svg

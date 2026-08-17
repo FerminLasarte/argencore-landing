@@ -2,12 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import AnimatedButton from "./components/animated-button";
 import Reveal from "./components/reveal";
+import SectionHeading from "./components/section-heading";
 import SiteFooter from "./components/site-footer";
 import SiteHeader from "./components/site-header";
 import {
   ArrowIcon,
   CheckIcon,
   MailIcon,
+  PeakIcon,
   WhatsAppIcon,
 } from "./components/icons";
 import { FEATURED_PROJECT, PROJECTS } from "./lib/projects";
@@ -202,25 +204,19 @@ export default function Home() {
         >
           <div className="mx-auto max-w-6xl px-6">
             <Reveal>
-              <div className="mx-auto max-w-2xl text-center">
-                <span className="text-sm font-medium uppercase tracking-[0.18em] text-blue">
-                  Qué hacemos
-                </span>
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-navy sm:text-4xl">
-                  Capacidades de la empresa
-                </h2>
-                <p className="mt-4 text-muted">
-                  Trabajamos de punta a punta: desde entender el problema hasta
-                  dejar el producto funcionando en producción.
-                </p>
-              </div>
+              <SectionHeading
+                eyebrow="Qué hacemos"
+                title="Capacidades de la empresa."
+                muted="De punta a punta."
+                subtitle="Desde entender el problema hasta dejar el producto funcionando en producción."
+              />
             </Reveal>
 
-            <div className="mt-16 grid gap-6 sm:grid-cols-2">
+            <div className="mt-16 grid gap-5 sm:grid-cols-2">
               {CAPABILITIES.map((item, i) => (
                 <Reveal
                   key={item.title}
-                  delay={i * 90}
+                  delay={i * 80}
                   className={
                     // con una cantidad impar, la última tarjeta ocupa el ancho completo
                     CAPABILITIES.length % 2 === 1 &&
@@ -229,19 +225,30 @@ export default function Home() {
                       : ""
                   }
                 >
-                  <div className="lift group h-full rounded-2xl border border-border bg-white p-8">
-                    <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-blue/8 text-blue transition-all duration-500 group-hover:bg-blue group-hover:text-white">
-                      <span className="text-sm font-semibold">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-                    <h3 className="text-lg font-semibold text-navy">
+                  <article className="group relative h-full overflow-hidden rounded-xl border border-border bg-white p-8 transition-colors duration-500 hover:border-navy/25 sm:p-10">
+                    {/* Regla superior que se completa al pasar el mouse */}
+                    <span
+                      className="absolute left-0 top-0 h-[3px] w-0 bg-gradient-to-r from-blue to-blue-soft transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-full"
+                      aria-hidden="true"
+                    />
+
+                    {/* Numeral de fondo, como marca de agua editorial */}
+                    <span
+                      className="pointer-events-none absolute right-5 top-2 select-none text-[5.5rem] font-semibold leading-none tracking-tight text-navy/[0.045] transition-colors duration-500 group-hover:text-blue/[0.08]"
+                      aria-hidden="true"
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+
+                    <PeakIcon className="relative h-4 w-9 text-navy transition-all duration-500 group-hover:-translate-y-0.5 group-hover:text-blue" />
+
+                    <h3 className="relative mt-6 text-xl font-semibold tracking-[-0.02em] text-navy sm:text-[1.4rem]">
                       {item.title}
                     </h3>
-                    <p className="mt-2.5 leading-relaxed text-muted">
+                    <p className="relative mt-3 max-w-lg leading-relaxed text-muted">
                       {item.description}
                     </p>
-                  </div>
+                  </article>
                 </Reveal>
               ))}
             </div>
@@ -252,18 +259,12 @@ export default function Home() {
         <section id="proyectos" className="py-24">
           <div className="mx-auto max-w-6xl px-6">
             <Reveal>
-              <div className="mx-auto max-w-2xl text-center">
-                <span className="text-sm font-medium uppercase tracking-[0.18em] text-blue">
-                  Proyectos
-                </span>
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-navy sm:text-4xl">
-                  Lo que estamos construyendo
-                </h2>
-                <p className="mt-4 text-muted">
-                  Además del trabajo a medida, desarrollamos productos propios.
-                  Este es el principal.
-                </p>
-              </div>
+              <SectionHeading
+                eyebrow="Proyectos"
+                title="Lo que estamos construyendo."
+                muted="Y lo que viene."
+                subtitle="Además del trabajo a medida, desarrollamos productos propios. Este es el principal."
+              />
             </Reveal>
 
             <Reveal delay={120}>
@@ -389,14 +390,11 @@ export default function Home() {
         <section className="border-y border-border bg-surface py-24">
           <div className="mx-auto max-w-6xl px-6">
             <Reveal>
-              <div className="mx-auto max-w-2xl text-center">
-                <span className="text-sm font-medium uppercase tracking-[0.18em] text-blue">
-                  Cómo trabajamos
-                </span>
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-navy sm:text-4xl">
-                  Un proceso simple y transparente
-                </h2>
-              </div>
+              <SectionHeading
+                eyebrow="Cómo trabajamos"
+                title="Un proceso simple."
+                muted="Y transparente."
+              />
             </Reveal>
 
             <div className="mt-16 grid gap-10 sm:grid-cols-3">
@@ -430,13 +428,11 @@ export default function Home() {
                 height={140}
                 className="mx-auto mb-8 h-14 w-14 object-contain opacity-90"
               />
-              <span className="text-sm font-medium uppercase tracking-[0.18em] text-blue">
-                Nosotros
-              </span>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-navy sm:text-4xl">
-                Sobre Argencore Solutions
-              </h2>
-              <p className="mt-6 text-lg leading-relaxed text-muted">
+              <SectionHeading
+                eyebrow="Nosotros"
+                title="Sobre Argencore Solutions."
+              />
+              <p className="mt-8 text-lg leading-relaxed text-muted">
                 Somos una empresa argentina de tecnología con base en Capital
                 Federal. Hacemos páginas web, desarrollo de software a medida e
                 inteligencia artificial, y combinamos el trabajo por proyectos
@@ -457,13 +453,11 @@ export default function Home() {
                 aria-hidden="true"
               />
               <div className="relative">
-                <h2 className="text-3xl font-semibold tracking-tight text-navy sm:text-4xl">
-                  Hablemos
-                </h2>
-                <p className="mx-auto mt-4 max-w-md text-muted">
-                  Contanos qué necesita tu empresa. Escribinos por WhatsApp o
-                  por mail y te respondemos a la brevedad.
-                </p>
+                <SectionHeading
+                  title="Hablemos."
+                  muted="Cuando quieras."
+                  subtitle="Contanos qué necesita tu empresa. Escribinos por WhatsApp o por mail y te respondemos a la brevedad."
+                />
 
                 <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <AnimatedButton
